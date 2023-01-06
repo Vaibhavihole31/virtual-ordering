@@ -40,6 +40,17 @@ app.post('/signup', async (req, res) => {
     }
 
 
+    // validation to check if email already exists 
+
+    const existingUser = await User.findOne({ email: email });
+    if (existingUser) {
+        return res.json({
+            success: false,
+            message: "Email already exists"
+        })
+    }
+
+
     const user = new User({
         name: name,
         phone: phone,
