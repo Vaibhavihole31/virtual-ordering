@@ -80,29 +80,28 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    if (!email || !password) {
+    let errorMessage = []
+
+    if (!email) errorMessage.push("Email cannot be empty")
+    if(!password) errorMessage.push("Password cannot be empty")
+
+    if (errorMessage.length) {
         return res.json({
             success: false,
-            message: "Email and Password are required"
-        })
+            message: errorMessage.toString()
+        });
     }
 
-    const existingUser = await User.findOne({ email: email, password: password });
+    const existingUser = await User.findOne({ 
+        email, 
+        password
+    });
 
-    if (existingUser) {
-        return res.json({
-            success: true,
-            message: "Login Successful",
-            data: existingUser
-        })
-    }
-
-    else {
-        return res.json({
-            success: false,
-            message: "Invalid email or password"
-        })
-    }
+    res.json({
+        success: existingUser ? true : false,
+        message : existingUser ? "Login Successfully!" : "Wrong Credential!",
+        data: existingUser
+    })
 })
 
 app.listen(PORT, () => {
