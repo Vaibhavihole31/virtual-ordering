@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 mongoose.set("strictQuery", false);
 
-mongoose.connect(process.env.MONGODB_URL, ()=>{
+mongoose.connect(process.env.MONGODB_URL, () => {
     console.log('Connected To MongoDB🤝');
 })
 
@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URL, ()=>{
 // api route start here
 
 app.post('/signup', async (req, res) => {
-    const {name, phone, email, password, role} = req.body;
+    const { name, phone, email, password, role } = req.body;
 
     // validation to check all fileld are filled
 
@@ -50,6 +50,15 @@ app.post('/signup', async (req, res) => {
         })
     }
 
+    // validation to check if phone already exists
+
+    const existingUserPhone = await User.findOne({ phone: phone });
+    if (existingUserPhone) {
+        return res.json({
+            success: false,
+            message: "Phone already exists"
+        })
+    }
 
     const user = new User({
         name: name,
@@ -68,6 +77,6 @@ app.post('/signup', async (req, res) => {
     })
 })
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`server is running on ${PORT} ✈️`);
 })
