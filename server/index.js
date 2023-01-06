@@ -22,6 +22,24 @@ mongoose.connect(process.env.MONGODB_URL, ()=>{
 app.post('/signup', async (req, res) => {
     const {name, phone, email, password, role} = req.body;
 
+    // validation to check all fileld are filled
+
+    const emptyFields = [];
+
+    if (!name) emptyFields.push('name');
+    if (!phone) emptyFields.push('phone');
+    if (!email) emptyFields.push('email');
+    if (!password) emptyFields.push('password');
+    if (!role) emptyFields.push('role');
+
+    if (emptyFields.length > 0) {
+        return res.json({
+            success: false,
+            message: `${emptyFields.join(',')} are required`
+        })
+    }
+
+
     const user = new User({
         name: name,
         phone: phone,
