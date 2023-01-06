@@ -80,6 +80,13 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
+    if (!email || !password) {
+        return res.json({
+            success: false,
+            message: "Email and Password are required"
+        })
+    }
+
     const existingUser = await User.findOne({ email: email, password: password });
 
     if (existingUser) {
