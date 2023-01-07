@@ -5,6 +5,7 @@ import md5 from 'md5';
 dotenv.config();
 
 import User from './models/User.js'
+import FoodItem from "./models/FoodItem.js";
 
 const app = express();
 app.use(express.json());
@@ -102,6 +103,26 @@ app.post('/login', async (req, res) => {
         success: existingUser ? true : false,
         message : existingUser ? "Login Successfully!" : "Wrong Credential!",
         data: existingUser
+    })
+})
+
+app.post('/createFoodItem', async(req,res) =>{
+    const {title, description, imgUrl, price, category} = req.body;
+
+    const foodItem = new FoodItem({
+        title,
+        description,
+        imgUrl,
+        price,
+        category
+    })
+
+    const savedFoodItem = await foodItem.save();
+
+    res.json({
+        success: true,
+        message: "Food Item created Successfully!",
+        data: savedFoodItem
     })
 })
 
