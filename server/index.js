@@ -130,7 +130,7 @@ app.get('/foodItemByCategory', async (req, res) => {
     const { category } = req.query;
 
     const foodItems = await FoodItem.find({
-        category
+        category: { $regex: category, $options: 'i' }
     })
 
     res.json({
@@ -144,7 +144,7 @@ app.get('/foodItems', async (req, res) => {
     const { title } = req.query;
 
     const foodItems = await FoodItem.find({
-        title
+        title: { $regex: title, $options: 'i' }
     })
 
     res.json({
