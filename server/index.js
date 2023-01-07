@@ -85,7 +85,7 @@ app.post('/login', async (req, res) => {
     let errorMessage = []
 
     if (!email) errorMessage.push("Email cannot be empty")
-    if(!password) errorMessage.push("Password cannot be empty")
+    if (!password) errorMessage.push("Password cannot be empty")
 
     if (errorMessage.length) {
         return res.json({
@@ -94,20 +94,20 @@ app.post('/login', async (req, res) => {
         });
     }
 
-    const existingUser = await User.findOne({ 
-        email, 
+    const existingUser = await User.findOne({
+        email,
         password: md5(password)
     });
 
     res.json({
         success: existingUser ? true : false,
-        message : existingUser ? "Login Successfully!" : "Wrong Credential!",
+        message: existingUser ? "Login Successfully!" : "Wrong Credential!",
         data: existingUser
     })
 })
 
-app.post('/createFoodItem', async(req,res) =>{
-    const {title, description, imgUrl, price, category} = req.body;
+app.post('/createFoodItem', async (req, res) => {
+    const { title, description, imgUrl, price, category } = req.body;
 
     const foodItem = new FoodItem({
         title,
@@ -123,6 +123,20 @@ app.post('/createFoodItem', async(req,res) =>{
         success: true,
         message: "Food Item created Successfully!",
         data: savedFoodItem
+    })
+})
+
+app.get('/foodItemByCategory', async (req, res) => {
+    const { category } = req.query;
+
+    const foodItems = await FoodItem.find({
+        category 
+    })
+
+    res.json({
+        success: true,
+        message: "Food Item Fetched Successfully",
+        data: foodItems
     })
 })
 
