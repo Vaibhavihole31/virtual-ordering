@@ -157,6 +157,14 @@ app.get('/foodItems', async (req, res) => {
 app.post('/createTable', async(req, res)=> {
     const {tableNumber} = req.body;
 
+    const existingTable = await Table.findOne({ tableNumber: tableNumber });
+    if(existingTable) {
+        return res.json({
+            success:false,
+            message: "Table already exists"
+        })
+    }
+
     const table = new Table({
         tableNumber,
         booked: false
