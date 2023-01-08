@@ -18,7 +18,6 @@ mongoose.connect(process.env.MONGODB_URL, () => {
     console.log('Connected To MongoDB🤝');
 })
 
-
 // api route start here
 
 app.post('/signup', async (req, res) => {
