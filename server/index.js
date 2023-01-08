@@ -179,6 +179,32 @@ app.post('/createTable', async(req, res)=> {
     })
 })
 
+app.post('/bookTable', async(req, res) => {
+    const {tableNumber, userId} = req.body;
+
+    const existingTable = await Table.findOne({ tableNumber: tableNumber });
+    if(existingTable && existingTable.booked)
+    {
+        return res.json({
+            success: false,
+            message: "Table already occupied"
+        })
+    }
+
+    if(existingTable)
+    {
+        existingTable.booked = true;
+        existingTable.bookedBy = userId;
+        await existingTable.save();
+    }
+
+    res.json({
+        success:true,
+        message: "Table Booked Successfully",
+        data: existingTable
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT} ✈️`);
 })
