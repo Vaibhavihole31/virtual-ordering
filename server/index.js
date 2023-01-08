@@ -221,6 +221,16 @@ app.post('/unBookTable', async (req, res) => {
     })
 })
 
+app.get('/avilableTables', async(req,res) => {
+    const avilableTables = await Table.find({ booked: false });
+   
+    res.json({
+        success: true,
+        message : "Avilable tables fetched successfully",
+        data: avilableTables
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT} ✈️`);
 })
