@@ -4,8 +4,9 @@ import dotenv from 'dotenv';
 import md5 from 'md5';
 dotenv.config();
 
-import User from './models/User.js'
+import User from './models/User.js';
 import FoodItem from "./models/FoodItem.js";
+import Table from './models/Table.js';
 
 const app = express();
 app.use(express.json());
@@ -150,6 +151,23 @@ app.get('/foodItems', async (req, res) => {
         success: true,
         message: "Food Item Featched Successfully",
         data: foodItems
+    })
+})
+
+app.post('/createTable', async(req, res)=> {
+    const {tableNumber} = req.body;
+
+    const table = new Table({
+        tableNumber,
+        booked: false
+    })
+
+    const savedTable = await table.save();
+
+    res.json({
+        success:true,
+        message: "Table Created Successfully",
+        data: savedTable
     })
 })
 
