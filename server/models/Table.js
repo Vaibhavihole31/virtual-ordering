@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
 
 const tableSchema = new Schema({
-    tableNumber: Number,
-    booked: Boolean,
+    tableNumber:  { type: Number, require: [true, 'tableNumber cannot be empty'] },
+    booked:  { type: Boolean, require: [true, 'booked cannot be empty'] },
     bookedBy: {
         type: Schema.Types.ObjectId,
         ref: "User"
