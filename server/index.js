@@ -154,13 +154,13 @@ app.get('/foodItems', async (req, res) => {
     })
 })
 
-app.post('/createTable', async(req, res)=> {
-    const {tableNumber} = req.body;
+app.post('/createTable', async (req, res) => {
+    const { tableNumber } = req.body;
 
     const existingTable = await Table.findOne({ tableNumber: tableNumber });
-    if(existingTable) {
+    if (existingTable) {
         return res.json({
-            success:false,
+            success: false,
             message: "Table already exists"
         })
     }
@@ -173,34 +173,50 @@ app.post('/createTable', async(req, res)=> {
     const savedTable = await table.save();
 
     res.json({
-        success:true,
+        success: true,
         message: "Table Created Successfully",
         data: savedTable
     })
 })
 
-app.post('/bookTable', async(req, res) => {
-    const {tableNumber, userId} = req.body;
+app.post('/bookTable', async (req, res) => {
+    const { tableNumber, userId } = req.body;
 
     const existingTable = await Table.findOne({ tableNumber: tableNumber });
-    if(existingTable && existingTable.booked)
-    {
+    if (existingTable && existingTable.booked) {
         return res.json({
             success: false,
             message: "Table already occupied"
         })
     }
 
-    if(existingTable)
-    {
+    if (existingTable) {
         existingTable.booked = true;
         existingTable.bookedBy = userId;
         await existingTable.save();
     }
 
     res.json({
-        success:true,
+        success: true,
         message: "Table Booked Successfully",
+        data: existingTable
+    })
+})
+
+app.post('/unBookTable', async (req, res) => {
+    const { tableNumber } = req.body;
+
+    const existingTable = await Table.findOne({ tableNumber: tableNumber });
+
+    if (existingTable) {
+        existingTable.booked = false;
+        existingTable.bookedBy = null;
+        await existingTable.save();
+    }
+
+    res.json({
+        success: true,
+        message: "Table unbooked successfully",
         data: existingTable
     })
 })
