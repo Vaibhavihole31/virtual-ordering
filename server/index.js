@@ -254,8 +254,8 @@ app.post('/orderFoodItems', async (req, res) => {
     })
 })
 
-app.get('/order', async(req,res) => {
-    const {orderId} = req.query;
+app.get('/order', async (req, res) => {
+    const { orderId } = req.query;
 
     const order = await Order.findOne({ orderId: orderId });
 
@@ -263,6 +263,18 @@ app.get('/order', async(req,res) => {
         success: true,
         message: "Order Feached Successfully",
         data: order
+    })
+})
+
+app.get('/orderByUserId', async (req, res) => {
+    const { userId } = req.query;
+
+    const orders = await Order.find({ userId: userId });
+
+    res.json({
+        success: true,
+        message: "Orders fetched Successfully",
+        data: orders
     })
 })
 
