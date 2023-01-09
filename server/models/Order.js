@@ -7,11 +7,11 @@ const orderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    items: {
+    items: [{
         name: { type: String, require: [true, 'item name cannot be empty'] },
         price: { type: Number, require: [true, 'price cannot be empty'] },
         quantity: { type: Number, require: [true, 'quantity cannot be empty'] },
-    }
+    }]
 })
 
 const Order = model("Order", orderSchema);

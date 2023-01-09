@@ -7,6 +7,7 @@ dotenv.config();
 import User from './models/User.js';
 import FoodItem from "./models/FoodItem.js";
 import Table from './models/Table.js';
+import Order from './models/Order.js'
 
 const app = express();
 app.use(express.json());
@@ -228,6 +229,28 @@ app.get('/avilableTables', async(req,res) => {
         success: true,
         message : "Avilable tables fetched successfully",
         data: avilableTables
+    })
+})
+
+app.post('/orderFoodItems', async(req,res) => {
+    const {userId, tableNumber, items} = req.body;
+
+    const totalOrders = await Order.countDocuments();
+    const orderId = totalOrders + 1;
+
+    const order = new Order({
+        orderId,
+        userId,
+        tableNumber,
+        items
+    })
+
+    const savedOrder = await order.save();
+
+    res.json({
+        success: true,
+        message: "Order Placed Successfully",
+        data: savedOrder
     })
 })
 
