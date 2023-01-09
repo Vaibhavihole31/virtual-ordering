@@ -222,18 +222,18 @@ app.post('/unBookTable', async (req, res) => {
     })
 })
 
-app.get('/avilableTables', async(req,res) => {
+app.get('/avilableTables', async (req, res) => {
     const avilableTables = await Table.find({ booked: false });
-   
+
     res.json({
         success: true,
-        message : "Avilable tables fetched successfully",
+        message: "Avilable tables fetched successfully",
         data: avilableTables
     })
 })
 
-app.post('/orderFoodItems', async(req,res) => {
-    const {userId, tableNumber, items} = req.body;
+app.post('/orderFoodItems', async (req, res) => {
+    const { userId, tableNumber, items } = req.body;
 
     const totalOrders = await Order.countDocuments();
     const orderId = totalOrders + 1;
@@ -251,6 +251,18 @@ app.post('/orderFoodItems', async(req,res) => {
         success: true,
         message: "Order Placed Successfully",
         data: savedOrder
+    })
+})
+
+app.get('/order', async(req,res) => {
+    const {orderId} = req.query;
+
+    const order = await Order.findOne({ orderId: orderId });
+
+    res.json({
+        success: true,
+        message: "Order Feached Successfully",
+        data: order
     })
 })
 
