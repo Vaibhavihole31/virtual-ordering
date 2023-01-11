@@ -31,6 +31,8 @@ function Signup() {
                 icon: "success",
                 button: "Aww yiss!",
               });
+
+              window.location.href = '/login'
         }
         else {
             swal({
