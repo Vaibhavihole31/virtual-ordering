@@ -1,43 +1,53 @@
 import React, { useState } from 'react'
 import './Signup.css'
 import axios from 'axios';
-import Order from './order.png'
+import Order from './order.png';
+import swal from 'sweetalert';
 
 function Signup() {
 
-        const [ name, setName ] = useState("");
-        const [ email, setEmail ] = useState("");
-        const [ phone, setPhone ] = useState("");
-        const [ password, setPassword ] = useState("");
-        const [role, setRole] = useState("user")
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [password, setPassword] = useState("");
+    const [role, setRole] = useState("user")
 
 
-        async function addUser() {
-            const response = await axios.post('/signup', {
-                name: name,
-                email: email,
-                password: password,
-                phone: phone,
-                role: role
-            })
+    async function addUser() {
+        const response = await axios.post('/signup', {
+            name: name,
+            email: email,
+            password: password,
+            phone: phone,
+            role: role
+        })
 
-            console.log(response);
+        console.log(response.data);
 
-            if(response.data.success)
-            {
-                alert('Signup Successfully !!');
-            }
-            else{
-                alert(response.data.message)
-            }
-
-            setName("");
-            setEmail("");
-            setPassword("");
-            setPhone("");
-            setRole("");
+        if (response.data.success) {
+            await swal({
+                title: "Signup Successfully !!",
+                text: response.data.message,
+                icon: "success",
+                button: "Aww yiss!",
+              });
         }
-        
+        else {
+            swal({
+                title: "Error",
+                text: response.data.message,
+                icon: "error",
+                button: "Try Again!",
+              });
+        }
+
+        setName("");
+        setEmail("");
+        setPassword("");
+        setPhone("");
+        setRole("");
+    }
+
     return (
         <>
             <div className='container'>
