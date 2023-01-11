@@ -22,8 +22,22 @@ function Signup() {
             })
 
             console.log(response);
-        }
 
+            if(response.data.success)
+            {
+                alert('Signup Successfully !!');
+            }
+            else{
+                alert(response.data.message)
+            }
+
+            setName("");
+            setEmail("");
+            setPassword("");
+            setPhone("");
+            setRole("");
+        }
+        
     return (
         <>
             <div className='container'>
