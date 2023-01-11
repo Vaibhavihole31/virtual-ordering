@@ -48,6 +48,9 @@ function Signup() {
                                         placeholder='password'
                                     />
                                 </div>
+                                <button className="signup-page-btn w-100 mb-5" type="button">
+                                    <i class="fa-solid fa-right-to-bracket"></i> <b>Signup</b>
+                                </button>
                             </form>
                         </div>
                     </div>
