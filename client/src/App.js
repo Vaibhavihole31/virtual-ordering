@@ -6,12 +6,14 @@ import {
 } from "react-router-dom";
 import Signup from './view/Signup/Signup'
 import Login from './view/Login/Login'
+import Home from './view/Home/Home'
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Route path='/' element={<Home/>} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login/>} />
         </Routes>
