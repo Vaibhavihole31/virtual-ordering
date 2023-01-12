@@ -57,6 +57,8 @@ function Signup() {
         setPassword("");
         setPhone("");
         setRole("");
+
+        localStorage.removeItem('virtualUser');
     }
 
     return (

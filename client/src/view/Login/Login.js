@@ -52,8 +52,6 @@ function Login() {
     setEmail("");
     setPassword("");
 
-    localStorage.removeItem('virtualUser'); 
-
   }
 
   return (
@@ -88,7 +86,7 @@ function Login() {
               </div>
 
               <button className="signup-page-btn w-100 mb-5 btn btn-primary" type="button" onClick={checkLogin}>
-                <i class="fa-solid fa-right-to-bracket"></i> <b>Signup</b>
+                <i class="fa-solid fa-right-to-bracket"></i> <b>Login</b>
               </button>
             </div>
           </div>
