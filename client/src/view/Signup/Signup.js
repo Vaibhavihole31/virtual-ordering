@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Signup.css'
 import axios from 'axios';
-import Order from './order.png';
+import SignupImg from './singup-img.png';
 import swal from 'sweetalert';
 
 function Signup() {
@@ -55,7 +55,7 @@ function Signup() {
             <div className='container'>
                 <div className='row'>
                     <div className='col-md-5'>
-                        <img className='order-img' src={Order} />
+                        <img className='order-img' src={SignupImg} />
                     </div>
                     <div className='col-md-2'></div>
 
@@ -100,7 +100,7 @@ function Signup() {
                                         value={password} onChange={(e) => { setPassword(e.target.value) }}
                                     />
                                 </div>
-                                <button className="signup-page-btn w-100 mb-5" type="button" onClick={addUser}>
+                                <button className="signup-page-btn w-100 mb-5 btn btn-primary" type="button" onClick={addUser}>
                                     <i class="fa-solid fa-right-to-bracket"></i> <b>Signup</b>
                                 </button>
                             </form>
