@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Signup.css'
 import axios from 'axios';
 import SignupImg from './singup-img.png';
 import swal from 'sweetalert';
+import { virtualUser } from './../../utils/virtualUser';
 
 function Signup() {
 
@@ -10,8 +11,13 @@ function Signup() {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState("user")
+    const [role, setRole] = useState("user");
 
+    useEffect(() => {
+        if(virtualUser){
+          window.location.href = '/';
+        }
+      }, [])
 
     async function addUser() {
         const response = await axios.post('/signup', {

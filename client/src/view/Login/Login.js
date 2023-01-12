@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
 import LoginImg from './login-img.png';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { virtualUser } from './../../utils/virtualUser';
 
 function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if(virtualUser){
+      window.location.href = '/';
+    }
+  }, [])
 
   async function checkLogin() {
     const response = await axios.post('/login', {
