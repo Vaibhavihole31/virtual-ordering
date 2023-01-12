@@ -14,10 +14,13 @@ function Signup() {
     const [role, setRole] = useState("user");
 
     useEffect(() => {
-        if(virtualUser){
-          window.location.href = '/';
+        if (virtualUser) {
+            swal("User are already Available !!")
+                .then(() => {
+                    window.location.href = "/"
+                });
         }
-      }, [])
+    }, [])
 
     async function addUser() {
         const response = await axios.post('/signup', {
@@ -36,9 +39,9 @@ function Signup() {
                 text: response.data.message,
                 icon: "success",
                 button: "Aww yiss!",
-              });
-              
-              window.location.href = '/login'
+            });
+
+            window.location.href = '/login'
         }
         else {
             swal({
@@ -46,7 +49,7 @@ function Signup() {
                 text: response.data.message,
                 icon: "error",
                 button: "Try Again!",
-              });
+            });
         }
 
         setName("");
