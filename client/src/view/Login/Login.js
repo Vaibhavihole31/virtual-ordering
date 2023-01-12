@@ -2,19 +2,42 @@ import React, { useState } from 'react';
 import './Login.css';
 import LoginImg from './login-img.png';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 function Login() {
 
-  const [ email, setEmail ] = useState("");
-  const [ password, setPassword ] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  async function checkLogin () {
-    const response = await axios.post('/login',{
+  async function checkLogin() {
+    const response = await axios.post('/login', {
       email: email,
       password: password
     })
 
-   console.log(response.data);
+    //  console.log(response.data);
+
+    if (response.data.success) {
+      await swal({
+        title: "Success",
+        text: response.data.message,
+        icon: "success",
+        button: "Aww yiss!",
+      });
+    }
+
+    else {
+      await swal({
+        itle: "Error",
+        text: response.data.message,
+        icon: "error",
+        button: "Try Again!",
+      });
+    }
+
+    setEmail("");
+    setPassword("");
+
   }
 
   return (
@@ -25,7 +48,7 @@ function Login() {
             <h2 className='text-center'>Login</h2>
 
             <div className='col-md-5'>
-              <img src={LoginImg} className="login-img"/>
+              <img src={LoginImg} className="login-img" />
             </div>
             <div className='col-md-7'>
               <div className="mb-3 mt-5" >
@@ -36,7 +59,7 @@ function Login() {
                     className="form-control input-control"
                     id="email"
                     placeholder='email'
-                    value={email} onChange={(e) => setEmail(e.target.value) }
+                    value={email} onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <input
@@ -44,7 +67,7 @@ function Login() {
                   className="form-control input-control"
                   id="password"
                   placeholder='password'
-                  value={password} onChange={(e) => setPassword(e.target.value) }
+                  value={password} onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
 
