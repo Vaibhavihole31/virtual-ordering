@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import LoginImg from './login-img.png';
+import axios from 'axios';
 
 function Login() {
+
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
+
+  async function checkLogin () {
+    const response = await axios.post('/login',{
+      email: email,
+      password: password
+    })
+
+   console.log(response.data);
+  }
+
   return (
     <>
       <div className='container'>
@@ -22,6 +36,7 @@ function Login() {
                     className="form-control input-control"
                     id="email"
                     placeholder='email'
+                    value={email} onChange={(e) => setEmail(e.target.value) }
                   />
                 </div>
                 <input
@@ -29,10 +44,11 @@ function Login() {
                   className="form-control input-control"
                   id="password"
                   placeholder='password'
+                  value={password} onChange={(e) => setPassword(e.target.value) }
                 />
               </div>
 
-              <button className="signup-page-btn w-100 mb-5 btn btn-primary" type="button">
+              <button className="signup-page-btn w-100 mb-5 btn btn-primary" type="button" onClick={checkLogin}>
                 <i class="fa-solid fa-right-to-bracket"></i> <b>Signup</b>
               </button>
             </div>
