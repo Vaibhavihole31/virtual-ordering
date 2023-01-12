@@ -24,6 +24,8 @@ function Login() {
         icon: "success",
         button: "Aww yiss!",
       });
+
+      window.location.href= '/'
     }
 
     else {
