@@ -25,6 +25,8 @@ function Login() {
         button: "Aww yiss!",
       });
 
+      localStorage.setItem('virtualUser', JSON.stringify(response.data.data));
+
       window.location.href= '/'
     }
 
