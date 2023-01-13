@@ -1,0 +1,31 @@
+.navbar{
+    box-shadow: 0px 0px 0.5px 0.5px gray;
+}
+
+.nav-color {
+    color: black;
+}
+
+.navbar-toggler {
+    color: black;
+}
+
+.logout-btn {
+    padding: 5px;
+    margin: 3px;
+    width: 120px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: rgb(208, 8, 8);
+    box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
+}
+
+.logut-btn:hover {
+    box-shadow: 3px 4px 2px -2px rgb(0, 0, 0);
+}
+
+.btn{
+    font-size: 20px;
+}
+
