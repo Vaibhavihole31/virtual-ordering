@@ -1,16 +1,16 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
-import md5 from 'md5';
 dotenv.config();
 
-import User from './models/User.js';
 import FoodItem from "./models/FoodItem.js";
 import Table from './models/Table.js';
 import Order from './models/Order.js';
 
 import { health } from './controllers/health.js';
 import { signupPost } from './controllers/signup.js';
+import { loginPost } from './controllers/login.js';
+import { createFoodItemPost } from './controllers/foodItem.js';
 
 const app = express();
 app.use(express.json());
@@ -27,52 +27,9 @@ app.get('/health', health)
 
 app.post('/signup', signupPost)
 
-app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+app.post('/login', loginPost)
 
-    let errorMessage = []
-
-    if (!email) errorMessage.push("Email cannot be empty")
-    if (!password) errorMessage.push("Password cannot be empty")
-
-    if (errorMessage.length) {
-        return res.json({
-            success: false,
-            message: errorMessage.toString()
-        });
-    }
-
-    const existingUser = await User.findOne({
-        email,
-        password: md5(password)
-    });
-
-    res.json({
-        success: existingUser ? true : false,
-        message: existingUser ? "Login Successfully!" : "Wrong Credential!",
-        data: existingUser
-    })
-})
-
-app.post('/createFoodItem', async (req, res) => {
-    const { title, description, imgUrl, price, category } = req.body;
-
-    const foodItem = new FoodItem({
-        title,
-        description,
-        imgUrl,
-        price,
-        category
-    })
-
-    const savedFoodItem = await foodItem.save();
-
-    res.json({
-        success: true,
-        message: "Food Item created Successfully!",
-        data: savedFoodItem
-    })
-})
+app.post('/createFoodItem', createFoodItemPost)
 
 app.get('/foodItemByCategory', async (req, res) => {
     const { category } = req.query;
