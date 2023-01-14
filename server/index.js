@@ -7,7 +7,9 @@ dotenv.config();
 import User from './models/User.js';
 import FoodItem from "./models/FoodItem.js";
 import Table from './models/Table.js';
-import Order from './models/Order.js'
+import Order from './models/Order.js';
+
+import { health } from './controllers/health.js';
 
 const app = express();
 app.use(express.json());
@@ -20,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URL, () => {
     console.log('Connected To MongoDB🤝');
 })
 
-// api route start here
+app.get('/health', health)
 
 app.post('/signup', async (req, res) => {
     const { name, phone, email, password, role } = req.body;
