@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
 
-import Table from './models/Table.js';
 import Order from './models/Order.js';
 
 import { health } from './controllers/health.js';
@@ -11,7 +10,11 @@ import { signupPost } from './controllers/signup.js';
 import { loginPost } from './controllers/login.js';
 import { createFoodItemPost } from './controllers/foodItem.js';
 import { foodItemByCategoryGet } from './controllers/foodItem.js';
-import {foodItemByTitleGet } from './controllers/foodItem.js';
+import { foodItemByTitleGet } from './controllers/foodItem.js';
+import { createTablePost } from './controllers/table.js';
+import { bookTablePost } from './controllers/table.js';
+import { unBookTablePost } from './controllers/table.js';
+import { avilableTablesGet } from './controllers/table.js';
 
 const app = express();
 app.use(express.json());
@@ -36,82 +39,13 @@ app.get('/foodItemByCategory', foodItemByCategoryGet)
 
 app.get('/foodItems', foodItemByTitleGet)
 
-app.post('/createTable', async (req, res) => {
-    const { tableNumber } = req.body;
+app.post('/createTable', createTablePost)
 
-    const existingTable = await Table.findOne({ tableNumber: tableNumber });
-    if (existingTable) {
-        return res.json({
-            success: false,
-            message: "Table already exists"
-        })
-    }
+app.post('/bookTable', bookTablePost)
 
-    const table = new Table({
-        tableNumber,
-        booked: false
-    })
+app.post('/unBookTable', unBookTablePost)
 
-    const savedTable = await table.save();
-
-    res.json({
-        success: true,
-        message: "Table Created Successfully",
-        data: savedTable
-    })
-})
-
-app.post('/bookTable', async (req, res) => {
-    const { tableNumber, userId } = req.body;
-
-    const existingTable = await Table.findOne({ tableNumber: tableNumber });
-    if (existingTable && existingTable.booked) {
-        return res.json({
-            success: false,
-            message: "Table already occupied"
-        })
-    }
-
-    if (existingTable) {
-        existingTable.booked = true;
-        existingTable.bookedBy = userId;
-        await existingTable.save();
-    }
-
-    res.json({
-        success: true,
-        message: "Table Booked Successfully",
-        data: existingTable
-    })
-})
-
-app.post('/unBookTable', async (req, res) => {
-    const { tableNumber } = req.body;
-
-    const existingTable = await Table.findOne({ tableNumber: tableNumber });
-
-    if (existingTable) {
-        existingTable.booked = false;
-        existingTable.bookedBy = null;
-        await existingTable.save();
-    }
-
-    res.json({
-        success: true,
-        message: "Table unbooked successfully",
-        data: existingTable
-    })
-})
-
-app.get('/avilableTables', async (req, res) => {
-    const avilableTables = await Table.find({ booked: false });
-
-    res.json({
-        success: true,
-        message: "Avilable tables fetched successfully",
-        data: avilableTables
-    })
-})
+app.get('/avilableTables', avilableTablesGet)
 
 app.post('/orderFoodItems', async (req, res) => {
     const { userId, tableNumber, items } = req.body;
