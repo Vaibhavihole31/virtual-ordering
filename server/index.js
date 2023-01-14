@@ -1,7 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
+import path from 'path';
 dotenv.config();
+const __dirname = path.resolve();
 
 import { health } from './controllers/health.js';
 import { signupPost } from './controllers/signup.js';
@@ -53,6 +55,14 @@ app.post('/orderFoodItems', orderFoodItemsPost)
 app.get('/order', orderGet)
 
 app.get('/orderByUserId', orderByUserIdGet)
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+    });
+  }
 
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT} ✈️`);
