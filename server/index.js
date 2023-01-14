@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
 
-import FoodItem from "./models/FoodItem.js";
 import Table from './models/Table.js';
 import Order from './models/Order.js';
 
@@ -11,6 +10,8 @@ import { health } from './controllers/health.js';
 import { signupPost } from './controllers/signup.js';
 import { loginPost } from './controllers/login.js';
 import { createFoodItemPost } from './controllers/foodItem.js';
+import { foodItemByCategoryGet } from './controllers/foodItem.js';
+import {foodItemByTitleGet } from './controllers/foodItem.js';
 
 const app = express();
 app.use(express.json());
@@ -31,33 +32,9 @@ app.post('/login', loginPost)
 
 app.post('/createFoodItem', createFoodItemPost)
 
-app.get('/foodItemByCategory', async (req, res) => {
-    const { category } = req.query;
+app.get('/foodItemByCategory', foodItemByCategoryGet)
 
-    const foodItems = await FoodItem.find({
-        category: { $regex: category, $options: 'i' }
-    })
-
-    res.json({
-        success: true,
-        message: "Food Item Fetched Successfully",
-        data: foodItems
-    })
-})
-
-app.get('/foodItems', async (req, res) => {
-    const { title } = req.query;
-
-    const foodItems = await FoodItem.find({
-        title: { $regex: title, $options: 'i' }
-    })
-
-    res.json({
-        success: true,
-        message: "Food Item Featched Successfully",
-        data: foodItems
-    })
-})
+app.get('/foodItems', foodItemByTitleGet)
 
 app.post('/createTable', async (req, res) => {
     const { tableNumber } = req.body;

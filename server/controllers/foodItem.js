@@ -19,3 +19,31 @@ export const createFoodItemPost = async (req, res) => {
         data: savedFoodItem
     })
 }
+
+export const foodItemByCategoryGet = async (req, res) => {
+    const { category } = req.query;
+
+    const foodItems = await FoodItem.find({
+        category: { $regex: category, $options: 'i' }
+    })
+
+    res.json({
+        success: true,
+        message: "Food Item Fetched Successfully",
+        data: foodItems
+    })
+}
+
+export const foodItemByTitleGet = async (req, res) => {
+    const { title } = req.query;
+
+    const foodItems = await FoodItem.find({
+        title: { $regex: title, $options: 'i' }
+    })
+
+    res.json({
+        success: true,
+        message: "Food Item Featched Successfully",
+        data: foodItems
+    })
+}
