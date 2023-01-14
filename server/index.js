@@ -18,6 +18,7 @@ import { avilableTablesGet } from './controllers/table.js';
 import { orderFoodItemsPost } from './controllers/orderFoodItem.js';
 import { orderGet } from './controllers/orderFoodItem.js';
 import { orderByUserIdGet } from './controllers/orderFoodItem.js';
+import { allFoodItemGet } from './controllers/foodItem.js';
 
 const app = express();
 app.use(express.json());
@@ -41,6 +42,8 @@ app.post('/createFoodItem', createFoodItemPost)
 app.get('/foodItemByCategory', foodItemByCategoryGet)
 
 app.get('/foodItems', foodItemByTitleGet)
+
+app.get("/allFoodItems", allFoodItemGet)
 
 app.post('/createTable', createTablePost)
 

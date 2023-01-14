@@ -47,3 +47,13 @@ export const foodItemByTitleGet = async (req, res) => {
         data: foodItems
     })
 }
+
+export const allFoodItemGet = async(req, res)=>{
+    const foodItems = await FoodItem.find()
+  
+    res.json({
+        success: true,
+        message: "Food Items fetched successfully",
+        data: foodItems
+    })
+  }
