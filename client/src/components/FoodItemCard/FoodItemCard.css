@@ -1,20 +1,21 @@
 .food-item-card{
-    margin: 5px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    width: 300px;
-    border-radius: 5px;
-    box-shadow: 0 0 3px #808080;
+  background-color: #fff;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    display: block;
+    border: 1px solid black;
+    box-shadow: 5px 5px 10px 2px gray;
   }
   
   .food-item-card-header-img{
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      margin: 5px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+    width: 85%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .btn-add-to-list{
