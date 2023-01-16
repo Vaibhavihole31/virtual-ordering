@@ -25,19 +25,21 @@ function FoodItemCard({ category, description, imgUrl, price, title }) {
         <div>
           <img src={imgUrl} class="food-item-card-header-img" />
         </div>
-        <h3>{title}</h3>
-        <p>{description || title}</p>
-        <p>{price}/- Only</p>
-        <span>{category}</span>
+        <h3 className='text-center'>{title}</h3>
+        <p className='text-center'>{description || title}</p>
+        <div className='price-btn-container'>
+        <b>{price}/- Only</b>
+        <b>{category}</b>
+        </div>
 
         <div className='quantity-btn-container'>
-          <span className='qnt-btn' onClick={(e)=>{setQuantity(quantity-1)}}>-</span>
+          <span className='qnt-btn' onClick={(e)=>{setQuantity(quantity-1)}}><i class="fa-sharp fa-solid fa-minus"></i></span>
           <span className='qnt-text'>{quantity}</span>
-          <span className='qnt-btn' onClick={(e)=>{setQuantity(quantity+1)}}>+</span>
+          <span className='qnt-btn' onClick={(e)=>{setQuantity(quantity+1)}}><i class="fa-solid fa-plus"></i></span>
         </div>
 
         <div>
-          <button type="button" className='btn-add-to-list' onClick={addToList}>Add To List</button>
+          <button type="button" className='text-center btn-add-to-list' onClick={addToList}><b><i class="fa-solid fa-cart-plus"></i> Add To List</b></button>
         </div>
       </div>
     </div>
