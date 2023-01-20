@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <Navbar/>
+      <Navbar myFoodListCount="100"/>
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/signup' element={<Signup />} />

@@ -31,7 +31,6 @@ function Home() {
     }
   }, [searchText])
 
-
   useEffect(() => {
     loginRequired()
   }, [])
