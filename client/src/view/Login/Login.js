@@ -10,12 +10,12 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(()=>{
-    if(virtualUser){
+  useEffect(() => {
+    if (virtualUser) {
       swal("User are already Avilable !!")
-      .then(() => {
-        window.location.href = "/"
-      });
+        .then(() => {
+          window.location.href = "/"
+        });
     }
   }, [])
 
@@ -37,7 +37,7 @@ function Login() {
 
       localStorage.setItem('virtualUser', JSON.stringify(response.data.data));
 
-      window.location.href= '/'
+      window.location.href = '/'
     }
 
     else {
