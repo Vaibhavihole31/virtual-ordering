@@ -43,7 +43,9 @@ export default function Navbar() {
         </div>
         <div className="collapse navbar-collapse navbar-sizing" id="navbarNav" style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end" }}>
           <form className='d-flex align-item-center'>
-            <b className='me-2 align-item-center my-list'>🍟 {foodItemCount}</b>
+           <Link to='/mylist'  className="text-decoration-none">
+           <b className='me-2 align-item-center my-list'>🍟 {foodItemCount}</b>
+           </Link>
           </form>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
