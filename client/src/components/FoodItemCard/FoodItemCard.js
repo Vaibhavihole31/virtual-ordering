@@ -23,6 +23,8 @@ function FoodItemCard({ category, description, imgUrl, price, title }) {
       title: "Added to List 🍟",
       icon: "success",
     })
+
+    window.location.reload()
   }
 
   return (
