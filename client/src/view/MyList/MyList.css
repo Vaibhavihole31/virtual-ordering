@@ -12,23 +12,25 @@
     box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
 }
 
-.subject-card {
-    background-color: #faf2f2;
+.order-card {
+    background-color: #fff;
     margin: 30px;
     padding: 15px;
-    max-width: 320px;
+    max-width: 500px;
     height: 100px;
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 2px 3px black;
     cursor: pointer;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 @media screen and (max-width:735px) {
 
-    .subject-card{
+    .order-card{
         margin-left: auto;
         margin-right: auto;
     }
@@ -36,7 +38,7 @@
 
 @media screen and (max-width:1080px) {
 
-    .subject-card{
+    .order-card{
         margin-left: auto;
         margin-right: auto;
     }
@@ -49,4 +51,9 @@
     width: 80px;
     bottom: 12px;
     border-radius: 60px;
+}
+
+.order-card-price{
+    position: absolute;
+    right: 200px;
 }

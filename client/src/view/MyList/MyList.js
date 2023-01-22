@@ -10,10 +10,9 @@ function MyList() {
                 {
                     myFoodListItems.map((item, index) => {
                         return (
-                            <div className='subject-card'>
+                            <div className='order-card'>
                                 <h4>{item.name}</h4>
-                                <h6>Quantity: {item.quantity}</h6>
-                                <h6 className='mb-2'>₹:{item.price}</h6>
+                                <b>Quantity: {item.quantity}</b> <b className='mb-2 order-card-price'>₹:{item.price}</b>
                                 <img className='order-img' src={item.imgUrl}/>
                             </div>
                         )
