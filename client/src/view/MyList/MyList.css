@@ -27,6 +27,11 @@
     margin-right: auto;
 }
 
+.order-card:hover {
+    box-shadow: 5px 5px black;
+    transition: 0.5s;
+  }
+
 
 @media screen and (max-width:735px) {
 
