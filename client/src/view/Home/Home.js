@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import FoodItemCard from '../../components/FoodItemCard/FoodItemCard';
 import { loginRequired } from '../../utils/loginRequired';
+import homePageImg from './homePageImg.jpg'
 import './Home.css'
 
 function Home() {
@@ -37,7 +38,20 @@ function Home() {
 
   return (
     <>
-      <div className='search-container text-center mt-5'>
+
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-6 item'>
+             hello
+          </div>
+          <div className='col-md-6'>
+            <div> 
+              <img className='home-page-img' src={homePageImg}/>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <div className='search-container text-center mt-5'>
         <input type="text" placeholder='Search' className='input-search search-box'
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)} />
@@ -51,7 +65,7 @@ function Home() {
             })
           }
         </div>
-      </div>
+      </div> */}
     </>
   )
 }
