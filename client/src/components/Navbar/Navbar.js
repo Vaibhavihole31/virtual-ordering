@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { myFoodListCount } from './../../utils/myList'
 import './Navbar.css';
+import { virtualUser } from './../../utils/virtualUser'
 
 export default function Navbar() {
 
-  const[foodItemCount, setFoodItemCount] = useState(myFoodListCount)
+  const [foodItemCount, setFoodItemCount] = useState(myFoodListCount)
 
   function logOut() {
     localStorage.removeItem('virtualUser');
     window.location.href = '/login'
   }
-  
+
   return (
     <>
       <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-light bg-light">
@@ -30,28 +31,37 @@ export default function Navbar() {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link" to="/signup">
-                <span className='nav_register nav-color btn'><b>Signup</b>  <i class="fa-solid fa-user-plus"></i> </span>
-              </Link>
+              {!virtualUser && (
+                <Link className="nav-link" to="/signup">
+                  <span className='nav_register nav-color btn'><b>Signup</b>  <i class="fa-solid fa-user-plus"></i> </span>
+                </Link>
+              )}
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                <span className='nav_register nav-color btn'><b> Login </b><i class="fa-solid fa-right-to-bracket"></i> </span>
-              </Link>
+              {!virtualUser && (
+                <Link className="nav-link" to="/login">
+                  <span className='nav_register nav-color btn'><b> Login </b><i class="fa-solid fa-right-to-bracket"></i> </span>
+                </Link>
+              )
+              }
             </li>
           </ul>
         </div>
         <div className="collapse navbar-collapse navbar-sizing" id="navbarNav" style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end" }}>
           <form className='d-flex align-item-center'>
-           <Link to='/mylist'  className="text-decoration-none">
-           <b className='me-2 align-item-center my-list'>🍟 {foodItemCount}</b>
-           </Link>
+            <Link to='/mylist' className="text-decoration-none">
+              <b className='me-2 align-item-center my-list'>🍟 {foodItemCount}</b>
+            </Link>
           </form>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
-                <button type="button" className='logout-btn' onClick={logOut}> <i class="fa-solid fa-right-from-bracket"></i> <b> Logout</b></button>
-              </Link>
+             {virtualUser &&(
+               <Link className="nav-link" to="/">
+               <button type="button" className='logout-btn' onClick={logOut}> <i class="fa-solid fa-right-from-bracket"></i> <b> Logout</b></button>
+             </Link>
+             )
+
+             }
             </li>
           </ul>
         </div>
