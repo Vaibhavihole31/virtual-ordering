@@ -11,16 +11,16 @@ function Home() {
   const [currentFoodItems, setAllFoodItems] = useState([])
 
   async function fetchAllItems() {
-    console.log('fetching all items')
+    // console.log('fetching all items')
     const response = await axios.get('/allFoodItems')
-    console.log(response.data.data)
+    // console.log(response.data.data)
     setAllFoodItems(response.data.data)
   }
 
   async function fetchSpecificItems() {
-    console.log('fetching specific items')
+    // console.log('fetching specific items')
     const response = await axios.get(`/foodItems?title=${searchText}`)
-    console.log(response.data.data)
+    // console.log(response.data.data)
     setAllFoodItems(response.data.data)
   }
   useEffect(() => {

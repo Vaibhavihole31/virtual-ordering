@@ -18,6 +18,8 @@ function MyList() {
 
         if(response.data.success){
             await swal("Order Placed",response.data.message, "success" )
+            localStorage.removeItem("list")
+            window.location.href = "/"
         }
     }
 
