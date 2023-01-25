@@ -1,6 +1,7 @@
 import React from 'react'
 import './MyList.css'
 import axios from 'axios';
+import swal from 'sweetalert';
 import { myFoodListItems } from './../../utils/myList';
 import { virtualUser } from './../../utils/virtualUser';
 
@@ -9,11 +10,15 @@ function MyList() {
    async function placeFoodOrder(){
         const response = await axios.post('/orderFoodItems',{
             userId: virtualUser,
-            Items: myFoodListItems,
+            items: myFoodListItems,
             tableNumber: localStorage.getItem("tableNumber") || 1,
         })
 
-        console.log(response.data);
+        // console.log(response.data);
+
+        if(response.data.success){
+            await swal("Order Placed",response.data.message, "success" )
+        }
     }
 
     return (
