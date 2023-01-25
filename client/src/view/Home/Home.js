@@ -51,7 +51,7 @@ function Home() {
           </div>
         </div>
       </div>
-      {/* <div className='search-container text-center mt-5'>
+      <div className='search-container text-center mt-5'>
         <input type="text" placeholder='Search' className='input-search search-box'
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)} />
@@ -65,7 +65,7 @@ function Home() {
             })
           }
         </div>
-      </div> */}
+      </div>
     </>
   )
 }

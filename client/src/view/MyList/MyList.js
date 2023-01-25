@@ -1,8 +1,21 @@
 import React from 'react'
 import './MyList.css'
+import axios from 'axios';
 import { myFoodListItems } from './../../utils/myList';
+import { virtualUser } from './../../utils/virtualUser';
 
 function MyList() {
+
+   async function placeFoodOrder(){
+        const response = await axios.post('/orderFoodItems',{
+            userId: virtualUser,
+            Items: myFoodListItems,
+            tableNumber: localStorage.getItem("tableNumber") || 1,
+        })
+
+        console.log(response.data);
+    }
+
     return (
         <>
             <div>
@@ -19,7 +32,7 @@ function MyList() {
                     })
                 }
                 <div className='text-center'>
-                    <button className='btn btn-primary confirm-btn'><b>Confirm Orders</b> <i class="fa-solid fa-circle-check"></i></button>
+                    <button className='btn btn-primary confirm-btn' onClick={placeFoodOrder}><b>Confirm Orders</b> <i class="fa-solid fa-circle-check"></i></button>
                 </div>
             </div>
         </>
