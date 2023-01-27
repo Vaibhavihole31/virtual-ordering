@@ -5,7 +5,6 @@ import { loginRequired } from '../../utils/loginRequired';
 
 function FlavorItem() {
 
-    
   const [searchText, setSearchText] = useState("");
   const [currentFoodItems, setAllFoodItems] = useState([])
 

@@ -7,8 +7,8 @@ import { virtualUser } from './../../utils/virtualUser';
 
 function MyList() {
 
-   async function placeColdOrder(){
-        const response = await axios.post('/orderColdItems',{
+    async function placeColdOrder() {
+        const response = await axios.post('/orderColdItems', {
             userId: virtualUser,
             items: myFoodListItems,
             tableNumber: localStorage.getItem("tableNumber") || 1,
@@ -16,11 +16,20 @@ function MyList() {
 
         // console.log(response.data);
 
-        if(response.data.success){
-            await swal("Order Placed",response.data.message, "success" )
+        if (response.data.success) {
+            await swal("Order Placed", response.data.message, "success")
             localStorage.removeItem("list")
             window.location.href = "/"
         }
+    }
+
+    if (!virtualUser)
+    {
+        localStorage.removeItem("list")
+        swal("Login First !!")
+        .then(() => {
+          window.location.href = "/"
+        });
     }
 
     return (
@@ -33,7 +42,7 @@ function MyList() {
                             <div className='order-card'>
                                 <h4>{item.name}</h4>
                                 <b>Quantity: {item.quantity}</b> <b className='mb-2 order-card-price'>₹:{item.price}</b>
-                                <img className='order-img' src={item.imgUrl}/>
+                                <img className='order-img' src={item.imgUrl} />
                             </div>
                         )
                     })

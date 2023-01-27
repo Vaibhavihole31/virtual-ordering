@@ -66,7 +66,7 @@ function Signup() {
             <div className='container'>
                 <div className='row'>
                     <div className='col-md-5'>
-                        <img className='order-img' src={SignupImg} />
+                        <img className='signup-img' src={SignupImg} />
                     </div>
                     <div className='col-md-2'></div>
 

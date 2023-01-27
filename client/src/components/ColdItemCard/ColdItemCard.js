@@ -11,7 +11,8 @@ function ColdItemCard({ category, description, imgUrl, price, title }) {
     const listObject = {
       name: title,
       price: price,
-      quantity: quantity
+      quantity: quantity,
+      imgUrl: imgUrl,
     }
 
     const existingList = JSON.parse(localStorage.getItem('list')) || []
