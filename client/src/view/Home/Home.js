@@ -53,6 +53,7 @@ function Home() {
           </div>
         </div>
       </div>
+      
       <div className='search-container text-center mt-5'>
         <input type="text" placeholder='Search' className='input-search search-box'
           value={searchText}
