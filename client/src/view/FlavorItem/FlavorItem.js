@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import FoodItemCard from '../../components/FoodItemCard/FoodItemCard';
+import ColdItemCard from '../../components/ColdItemCard/ColdItemCard';
 import { loginRequired } from '../../utils/loginRequired';
 
 function FlavorItem() {
@@ -10,12 +10,12 @@ function FlavorItem() {
   const [currentFoodItems, setAllFoodItems] = useState([])
 
   async function fetchAllItems() {
-    const response = await axios.get('/allFoodItems')
+    const response = await axios.get('/allCodeItems')
     setAllFoodItems(response.data.data)
   }
 
   async function fetchSpecificItems() {
-    const response = await axios.get(`/foodItems?title=${searchText}`)
+    const response = await axios.get(`/ColdItems?title=${searchText}`)
     setAllFoodItems(response.data.data)
   }
   useEffect(() => {
@@ -35,7 +35,7 @@ function FlavorItem() {
   return (
     <>
           <div className='search-container text-center mt-5'>
-        <input type="text" placeholder='Search' className='input-search search-box'
+        <input type="text" placeholder='Search Your Favourite Ice-Cream' className='input-search search-box'
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)} />
       </div>
@@ -44,7 +44,7 @@ function FlavorItem() {
         <div class="row">
           {
             currentFoodItems?.map((foodItem, index) => {
-              return (<FoodItemCard description={foodItem.description} category={foodItem.category} title={foodItem.title} price={foodItem.price} imgUrl={foodItem.imgUrl} key={index} />)
+              return (<ColdItemCard description={foodItem.description} category={foodItem.category} title={foodItem.title} price={foodItem.price} imgUrl={foodItem.imgUrl} key={index} />)
             })
           }
         </div>

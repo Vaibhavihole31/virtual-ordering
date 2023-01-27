@@ -7,8 +7,8 @@ import { virtualUser } from './../../utils/virtualUser';
 
 function MyList() {
 
-   async function placeFoodOrder(){
-        const response = await axios.post('/orderFoodItems',{
+   async function placeColdOrder(){
+        const response = await axios.post('/orderColdItems',{
             userId: virtualUser,
             items: myFoodListItems,
             tableNumber: localStorage.getItem("tableNumber") || 1,
@@ -39,7 +39,7 @@ function MyList() {
                     })
                 }
                 <div className='text-center'>
-                    <button className='btn btn-primary confirm-btn' onClick={placeFoodOrder}><b>Confirm Orders</b> <i class="fa-solid fa-circle-check"></i></button>
+                    <button className='btn btn-primary confirm-btn' onClick={placeColdOrder}><b>Confirm Orders</b> <i class="fa-solid fa-circle-check"></i></button>
                 </div>
             </div>
         </>

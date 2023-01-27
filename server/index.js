@@ -8,17 +8,17 @@ const __dirname = path.resolve();
 import { health } from './controllers/health.js';
 import { signupPost } from './controllers/signup.js';
 import { loginPost } from './controllers/login.js';
-import { createFoodItemPost } from './controllers/foodItem.js';
-import { foodItemByCategoryGet } from './controllers/foodItem.js';
-import { foodItemByTitleGet } from './controllers/foodItem.js';
+import { createColdItemPost } from './controllers/coldItem.js';
+import { coldItemByCategoryGet } from './controllers/coldItem.js';
+import { coldItemByTitleGet } from './controllers/coldItem.js';
 import { createTablePost } from './controllers/table.js';
 import { bookTablePost } from './controllers/table.js';
 import { unBookTablePost } from './controllers/table.js';
 import { avilableTablesGet } from './controllers/table.js';
-import { orderFoodItemsPost } from './controllers/orderFoodItem.js';
-import { orderGet } from './controllers/orderFoodItem.js';
-import { orderByUserIdGet } from './controllers/orderFoodItem.js';
-import { allFoodItemGet } from './controllers/foodItem.js';
+import { orderColdItemsPost } from './controllers/orderColdItem.js';
+import { orderGet } from './controllers/orderColdItem.js';
+import { orderByUserIdGet } from './controllers/orderColdItem.js';
+import { allColdItemGet } from './controllers/coldItem.js';
 
 const app = express();
 app.use(express.json());
@@ -37,13 +37,13 @@ app.post('/signup', signupPost)
 
 app.post('/login', loginPost)
 
-app.post('/createFoodItem', createFoodItemPost)
+app.post('/createColdItem', createColdItemPost)
 
-app.get('/foodItemByCategory', foodItemByCategoryGet)
+app.get('/coldItemByCategory', coldItemByCategoryGet)
 
-app.get('/foodItems', foodItemByTitleGet)
+app.get('/coldItems', coldItemByTitleGet)
 
-app.get("/allFoodItems", allFoodItemGet)
+app.get("/allCodeItems", allColdItemGet)
 
 app.post('/createTable', createTablePost)
 
@@ -53,7 +53,7 @@ app.post('/unBookTable', unBookTablePost)
 
 app.get('/avilableTables', avilableTablesGet)
 
-app.post('/orderFoodItems', orderFoodItemsPost)
+app.post('/orderColdItems', orderColdItemsPost)
 
 app.get('/order', orderGet)
 

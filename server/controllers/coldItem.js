@@ -1,9 +1,9 @@
-import FoodItem from "./../models/FoodItem.js";
+import ColdItem from "../models/ColdItem.js";
 
-export const createFoodItemPost = async (req, res) => {
+export const createColdItemPost = async (req, res) => {
     const { title, description, imgUrl, price, category } = req.body;
 
-    const foodItem = new FoodItem({
+    const coldItem = new ColdItem({
         title,
         description,
         imgUrl,
@@ -11,49 +11,49 @@ export const createFoodItemPost = async (req, res) => {
         category
     })
 
-    const savedFoodItem = await foodItem.save();
+    const savedcoldItem = await coldItem.save();
 
     res.json({
         success: true,
         message: "Food Item created Successfully!",
-        data: savedFoodItem
+        data: savedcoldItem
     })
 }
 
-export const foodItemByCategoryGet = async (req, res) => {
+export const coldItemByCategoryGet = async (req, res) => {
     const { category } = req.query;
 
-    const foodItems = await FoodItem.find({
+    const coldItems = await ColdItem.find({
         category: { $regex: category, $options: 'i' }
     })
 
     res.json({
         success: true,
         message: "Food Item Fetched Successfully",
-        data: foodItems
+        data: coldItems
     })
 }
 
-export const foodItemByTitleGet = async (req, res) => {
+export const coldItemByTitleGet = async (req, res) => {
     const { title } = req.query;
 
-    const foodItems = await FoodItem.find({
+    const coldItems = await ColdItem.find({
         title: { $regex: title, $options: 'i' }
     })
 
     res.json({
         success: true,
         message: "Food Item Featched Successfully",
-        data: foodItems
+        data: coldItems
     })
 }
 
-export const allFoodItemGet = async(req, res)=>{
-    const foodItems = await FoodItem.find()
+export const allColdItemGet = async(req, res)=>{
+    const coldItems = await ColdItem.find()
   
     res.json({
         success: true,
         message: "Food Items fetched successfully",
-        data: foodItems
+        data: coldItems
     })
   }

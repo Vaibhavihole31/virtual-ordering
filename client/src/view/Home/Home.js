@@ -21,7 +21,7 @@ function Home() {
           </div>
           <div className='col-md-6'>
             <div> 
-              <img className='home-page-img' src={homePageImg} />
+              <img className='home-page-img mb-5' src={homePageImg} />
             </div>
           </div>
         </div>

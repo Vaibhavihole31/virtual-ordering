@@ -1,6 +1,6 @@
-import Order from './../models/Order.js';
+import Order from '../models/Order.js';
 
-export const orderFoodItemsPost = async (req, res) => {
+export const orderColdItemsPost = async (req, res) => {
     const { userId, tableNumber, items } = req.body;
 
     const totalOrders = await Order.countDocuments();

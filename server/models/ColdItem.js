@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const foodItemSchema = new Schema({
+const coldItemSchema = new Schema({
     title: { type: String, require: [true, 'title cannot be empty'] },
     description: { type: String, require: [true, 'description cannot be empty'] },
     imgUrl: { type: String, require: [true, 'image url cannot be empty'] },
@@ -8,5 +8,5 @@ const foodItemSchema = new Schema({
     category: { type: String, require: [true, 'catergory cannot be empty'] },
 })
 
-const FoodItem = model("FoodItem", foodItemSchema)
-export default FoodItem
+const ColdItem = model("ColdItem", coldItemSchema)
+export default ColdItem

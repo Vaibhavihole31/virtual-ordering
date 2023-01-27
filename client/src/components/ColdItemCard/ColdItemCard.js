@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import './FoodItemCard.css'
+import './ColdItemCard.css'
 import swal from 'sweetalert'
+import { Link } from 'react-router-dom'
 
-function FoodItemCard({ category, description, imgUrl, price, title }) {
+function ColdItemCard({ category, description, imgUrl, price, title }) {
 
   const [quantity, setQuantity] = useState(1)
 
@@ -48,7 +49,9 @@ function FoodItemCard({ category, description, imgUrl, price, title }) {
           </div>
 
           <div>
+            <Link to="/mylist">
             <button type="button" className='text-center btn-add-to-list' onClick={addToList}><b><i class="fa-solid fa-cart-plus"></i> Add To List</b></button>
+            </Link>
           </div>
         </div>
       </div>
@@ -56,4 +59,4 @@ function FoodItemCard({ category, description, imgUrl, price, title }) {
   )
 }
 
-export default FoodItemCard
+export default ColdItemCard
