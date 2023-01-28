@@ -7,6 +7,14 @@ function ColdItemCard({ category, description, imgUrl, price, title }) {
 
   const [quantity, setQuantity] = useState(1)
 
+  const setCount = () => {
+    if(quantity <= 0) {
+      return;
+    } else {
+      setQuantity(quantity - 1);
+    }
+  }
+
   async function addToList() {
     const listObject = {
       name: title,
@@ -44,14 +52,14 @@ function ColdItemCard({ category, description, imgUrl, price, title }) {
             <b>{category}</b>
           </div>
           <div className='quantity-btn-container'>
-            <span className='qnt-btn' onClick={(e) => { setQuantity(quantity - 1) }}><i class="fa-sharp fa-solid fa-minus"></i></span>
+            <span className='qnt-btn' onClick={setCount }><i class="fa-sharp fa-solid fa-minus"></i></span>
             <span className='qnt-text'>{quantity}</span>
             <span className='qnt-btn' onClick={(e) => { setQuantity(quantity + 1) }}><i class="fa-solid fa-plus"></i></span>
           </div>
 
           <div>
             <Link to="/mylist">
-            <button type="button" className='text-center btn-add-to-list' onClick={addToList}><b><i class="fa-solid fa-cart-plus"></i> Add To List</b></button>
+            <button type="button" className='text-center btn-add-to-list mb-2' onClick={addToList}><b><i class="fa-solid fa-cart-plus"></i> Add To List</b></button>
             </Link>
           </div>
         </div>
