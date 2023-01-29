@@ -42,7 +42,7 @@ function ColdItemCard({ category, description, imgUrl, price, title }) {
       <div className="row">
         <div className="col-md-12">
           <div>
-            <img src={imgUrl} class="food-item-card-header-img" />
+            <img src={imgUrl} class="food-item-card-header-img mb-2" />
           </div>
 
           <h3 className='text-center'>{title}</h3>
