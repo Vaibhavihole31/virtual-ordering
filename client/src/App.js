@@ -10,6 +10,7 @@ import Login from './view/Login/Login';
 import Home from './view/Home/Home';
 import MyList from './view/MyList/MyList';
 import FlavorItem from './view/FlavorItem/FlavorItem';
+import TableBook from './view/TableBook/TableBook';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path='/mylist' element={<MyList/>} />
           <Route path='/floveritem' element={<FlavorItem/>} />
+          <Route path='/booktable' element={<TableBook/>} />
         </Routes>
       </BrowserRouter>
     </>
