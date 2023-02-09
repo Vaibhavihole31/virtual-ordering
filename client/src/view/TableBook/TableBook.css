@@ -1,0 +1,14 @@
+.container-booktable{
+    margin-top: 150px;
+}
+
+.table-card{
+    padding: 20px;
+    width: 250px;
+    margin-top: 50px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 1px 1px 3px  gray;
+}
