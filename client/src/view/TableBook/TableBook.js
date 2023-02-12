@@ -37,7 +37,7 @@ function TableBook() {
         icon: 'success',
         button: 'OK',
       });
-      window.location.href = '/dashboard';
+      window.location.href = '/floveritem';
       localStorage.setItem('bookedTable', JSON.stringify(response.data.data));
     } else {
       await swal({

@@ -14,7 +14,7 @@ function Home() {
              <h4 className='text-center mt-5'>And so are all the delicious recipes that contain it. Start here with the Perfect Affogato!</h4>
              
              <div className='text-center mt-5'>
-             <Link to="/floveritem">
+             <Link to="/booktable">
              <button className="flavor-btn text-center"><b>Try Our Flavor 🍧</b></button>
              </Link>
              </div>
